@@ -333,8 +333,8 @@
                 var m = matches[i];
                 var s_kp = screen_corners[m.screen_idx];
                 var p_kp = pattern_corners[m.pattern_lev][m.pattern_idx];
-                pattern_xy[i] = { "x": p_kp.x, "y": p_kp.y };
-                screen_xy[i] = { "x": s_kp.x, "y": s_kp.y };
+                pattern_xy[i] = { "x": p_kp.x, "y": p_kp.y }; //X
+                screen_xy[i] = { "x": s_kp.x, "y": s_kp.y }; //Y
             }
 
             // estimate motion
@@ -351,6 +351,8 @@
                         pattern_xy[good_cnt].y = pattern_xy[i].y;
                         screen_xy[good_cnt].x = screen_xy[i].x;
                         screen_xy[good_cnt].y = screen_xy[i].y;
+                        console.log(pattern_xy[good_cnt]); //==>{x: 359, y: 48}
+                        console.log(screen_xy[good_cnt]);  //==>{x: 65, y: 309}
                         good_cnt++;
                     }
                 }
@@ -359,7 +361,6 @@
             } else {
                 jsfeat.matmath.identity_3x3(homo3x3, 1.0);
             }
-            // console.log(homo3x3);
             return good_cnt;
         }
 
@@ -416,9 +417,10 @@
                         ld_off += 8; // next descriptor
                     }
                 }
-
+                console.log(best_dist);
                 // filter out by some threshold
                 if (best_dist < options.match_threshold) {
+                console.log(best_dist); //confidence -> 0 to 127
                     matches[num_matches].screen_idx = qidx;
                     matches[num_matches].pattern_lev = best_lev;
                     matches[num_matches].pattern_idx = best_idx;
