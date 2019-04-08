@@ -201,6 +201,7 @@
             stat.new_frame();
             ctx.drawImage(sec_image, 0, 0, 640, 480);
             var primary_imageData = ctx.getImageData(0, 0, 640, 480);
+            console.log("primary_imageData", primary_imageData); //Uint8ClampedArray
 
             stat.start("grayscale");
             jsfeat.imgproc.grayscale(primary_imageData.data, 640, 480, img_u8);
@@ -248,7 +249,7 @@
                     render_pattern_shape(ctx);
             }
 
-            $('#log').css({ "position": "fixed", "bottom": "0px", "width": "100%", "margin": "0px", "font-weight": "bold" });
+            $('#log').css({ "position": "fixed", "bottom": "0px", "left": "0px", "width": "100%", "margin": "0px", "font-weight": "bold" });
             $('#log').html(stat.log());
             $('#log br').replaceWith('&nbsp;&nbsp;|&nbsp;&nbsp;');
 
