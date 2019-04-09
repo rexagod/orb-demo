@@ -233,7 +233,7 @@
                 render_mono_primary_image(pattern_preview.data, data_u32, pattern_preview.cols, pattern_preview.rows, 640);
                 stat.start("matching");
                 num_matches = match_pattern();
-                // console.log(matches);
+                console.log(num_matches);
                 good_matches = find_transform(matches, num_matches);
                 stat.stop("matching");
             }
@@ -417,10 +417,10 @@
                         ld_off += 8; // next descriptor
                     }
                 }
-                console.log(best_dist);
+                // console.log(best_dist);
                 // filter out by some threshold
                 if (best_dist < options.match_threshold) {
-                console.log(best_dist); //confidence -> 0 to 127
+                // console.log(best_dist); //confidence -> 0 to 127
                     matches[num_matches].screen_idx = qidx;
                     matches[num_matches].pattern_lev = best_lev;
                     matches[num_matches].pattern_idx = best_idx;
